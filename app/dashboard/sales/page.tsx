@@ -23,6 +23,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { API_URL } from '@/lib/api';
 
 interface Sale {
   sale_id: number;
@@ -68,8 +69,8 @@ export default function SalesPage() {
 
     try {
       const [salesRes, salespersonsRes] = await Promise.all([
-        fetch('http://localhost:3001/api/sales', { headers: { 'x-auth-token': token } }),
-        fetch('http://localhost:3001/api/salespersons', { headers: { 'x-auth-token': token } })
+        fetch(`${API_URL}/api/sales`, { headers: { 'x-auth-token': token } }),
+        fetch(`${API_URL}/api/salespersons`, { headers: { 'x-auth-token': token } })
       ]);
 
       if (!salesRes.ok || !salespersonsRes.ok) {
@@ -108,7 +109,7 @@ export default function SalesPage() {
     if (!saleForPriceEdit) return;
     const token = localStorage.getItem('token');
     try {
-      await fetch(`http://localhost:3001/api/sales/${saleForPriceEdit.sale_id}`, {
+      await fetch(`${API_URL}/api/sales/${saleForPriceEdit.sale_id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -129,7 +130,7 @@ export default function SalesPage() {
     if (!saleToDelete) return;
     const token = localStorage.getItem('token');
     try {
-      await fetch(`http://localhost:3001/api/sales/${saleToDelete.sale_id}`, {
+      await fetch(`${API_URL}/api/sales/${saleToDelete.sale_id}`, {
         method: 'DELETE',
         headers: { 'x-auth-token': token! },
       });

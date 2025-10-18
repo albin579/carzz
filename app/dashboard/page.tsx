@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Car, DollarSign, Users, UserCircle, BadgeDollarSign } from 'lucide-react';
+import { API_URL } from '@/lib/api';
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({
@@ -19,9 +20,9 @@ export default function DashboardPage() {
 
       try {
         const [statsRes, salesRes] = await Promise.all([
-          fetch('http://localhost:3001/api/dashboard-stats', { headers: { 'x-auth-token': token } }),
-          fetch('http://localhost:3001/api/sales', { headers: { 'x-auth-token': token } }),
-        ]);
+          fetch(`${API_URL}/api/dashboard-stats`, { headers: { 'x-auth-token': token } }),
+          fetch(`${API_URL}/api/sales`, { headers: { 'x-auth-token': token } }),
+        });
 
         if (statsRes.ok) {
           const statsData = await statsRes.json();

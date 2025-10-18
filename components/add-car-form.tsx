@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/ui/dialog';
+import { API_URL } from '@/lib/api';
 
 interface AddCarFormProps {
   isOpen: boolean;
@@ -47,7 +48,7 @@ export function AddCarForm({ isOpen, onClose, onCarAdded }: AddCarFormProps) {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/cars', {
+      const response = await fetch(`${API_URL}/api/cars`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -24,6 +24,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { API_URL } from '@/lib/api';
 
 interface Car {
   car_id: number;
@@ -53,7 +54,7 @@ export default function CarsPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/cars', {
+      const response = await fetch(`${API_URL}/api/cars`, {
         headers: { 'x-auth-token': token },
       });
       if (!response.ok) throw new Error('Failed to fetch cars');
@@ -84,7 +85,7 @@ export default function CarsPage() {
     if (!carToDelete) return;
     const token = localStorage.getItem('token');
     try {
-      await fetch(`http://localhost:3001/api/cars/${carToDelete.car_id}`, {
+      await fetch(`${API_URL}/api/cars/${carToDelete.car_id}`, {
         method: 'DELETE',
         headers: { 'x-auth-token': token! },
       });

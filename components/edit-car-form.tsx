@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/ui/dialog';
+import { API_URL } from '@/lib/api';
 
 interface Car {
   car_id: number;
@@ -67,7 +68,7 @@ export function EditCarForm({ car, isOpen, onClose, onCarUpdated }: EditCarFormP
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/cars/${car.car_id}`, {
+      const response = await fetch(`${API_URL}/api/cars/${car.car_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

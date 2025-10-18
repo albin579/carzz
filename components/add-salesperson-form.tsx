@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/ui/dialog';
+import { API_URL } from '@/lib/api';
 
 interface AddSalespersonFormProps {
   isOpen: boolean;
@@ -39,7 +40,7 @@ export function AddSalespersonForm({ isOpen, onClose, onSalespersonAdded }: AddS
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/salespersons', {
+      const response = await fetch(`${API_URL}/api/salespersons`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

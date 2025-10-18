@@ -215,7 +215,7 @@ router.post('/sales', async (req, res) => {
     // Mark the car as 'Sold'
     await db.query('UPDATE cars SET status = $1 WHERE car_id = $2', ['Sold', car_id]);
 
-    // Commit the transaction
+    
     await db.query('COMMIT');
 
     res.status(201).json(rows[0]);
@@ -226,7 +226,7 @@ router.post('/sales', async (req, res) => {
   }
 });
 
-// Update a sale (partial update)
+
 router.patch('/sales/:id', async (req, res) => {
   const { id } = req.params;
   const { sale_price } = req.body;
@@ -252,7 +252,7 @@ router.patch('/sales/:id', async (req, res) => {
   }
 });
 
-// Delete a sale
+
 router.delete('/sales/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -264,7 +264,7 @@ router.delete('/sales/:id', async (req, res) => {
   }
 });
 
-// --- Profile API ---
+
 
 // Get user profile
 router.get('/profile', async (req, res) => {
@@ -280,7 +280,6 @@ router.get('/profile', async (req, res) => {
   }
 });
 
-// Update user profile
 router.put('/profile', async (req, res) => {
   const { first_name, last_name, email, phone } = req.body;
   try {
@@ -295,7 +294,7 @@ router.put('/profile', async (req, res) => {
   }
 });
 
-// --- Dashboard Stats API ---
+
 
 router.get('/dashboard-stats', async (req, res) => {
   try {

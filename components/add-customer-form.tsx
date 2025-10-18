@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/ui/dialog';
+import { API_URL } from '@/lib/api';
 
 interface AddCustomerFormProps {
   isOpen: boolean;
@@ -45,7 +46,7 @@ export function AddCustomerForm({ isOpen, onClose, onCustomerAdded }: AddCustome
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/customers', {
+      const response = await fetch(`${API_URL}/api/customers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

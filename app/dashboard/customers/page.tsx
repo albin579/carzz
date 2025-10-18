@@ -24,6 +24,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { API_URL } from '@/lib/api';
 
 interface Customer {
   customer_id: number;
@@ -50,7 +51,7 @@ export default function CustomersPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/customers', {
+      const response = await fetch(`${API_URL}/api/customers`, {
         headers: { 'x-auth-token': token },
       });
       if (!response.ok) throw new Error('Failed to fetch customers');
@@ -81,7 +82,7 @@ export default function CustomersPage() {
     if (!customerToDelete) return;
     const token = localStorage.getItem('token');
     try {
-      await fetch(`http://localhost:3001/api/customers/${customerToDelete.customer_id}`, {
+      await fetch(`${API_URL}/api/customers/${customerToDelete.customer_id}`, {
         method: 'DELETE',
         headers: { 'x-auth-token': token! },
       });

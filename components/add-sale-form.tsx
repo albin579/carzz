@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { API_URL } from '@/lib/api';
 
 interface AddSaleFormProps {
   isOpen: boolean;
@@ -57,9 +58,9 @@ export function AddSaleForm({ isOpen, onClose, onSaleAdded }: AddSaleFormProps) 
 
       try {
         const [carsRes, customersRes, salespersonsRes] = await Promise.all([
-          fetch('http://localhost:3001/api/cars', { headers: { 'x-auth-token': token } }),
-          fetch('http://localhost:3001/api/customers', { headers: { 'x-auth-token': token } }),
-          fetch('http://localhost:3001/api/salespersons', { headers: { 'x-auth-token': token } })
+          fetch(`${API_URL}/api/cars`, { headers: { 'x-auth-token': token } }),
+          fetch(`${API_URL}/api/customers`, { headers: { 'x-auth-token': token } }),
+          fetch(`${API_URL}/api/salespersons`, { headers: { 'x-auth-token': token } })
         ]);
 
         const carsData = await carsRes.json();
@@ -89,7 +90,7 @@ export function AddSaleForm({ isOpen, onClose, onSaleAdded }: AddSaleFormProps) 
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/sales', {
+      const response = await fetch(`${API_URL}/api/sales`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

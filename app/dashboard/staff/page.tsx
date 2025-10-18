@@ -24,6 +24,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { API_URL } from '@/lib/api';
 
 interface Salesperson {
   salesperson_id: number;
@@ -50,7 +51,7 @@ export default function StaffPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/salespersons', {
+      const response = await fetch(`${API_URL}/api/salespersons`, {
         headers: { 'x-auth-token': token },
       });
       if (!response.ok) throw new Error('Failed to fetch staff');
@@ -81,7 +82,7 @@ export default function StaffPage() {
     if (!salespersonToDelete) return;
     const token = localStorage.getItem('token');
     try {
-      await fetch(`http://localhost:3001/api/salespersons/${salespersonToDelete.salesperson_id}`, {
+      await fetch(`${API_URL}/api/salespersons/${salespersonToDelete.salesperson_id}`, {
         method: 'DELETE',
         headers: { 'x-auth-token': token! },
       });

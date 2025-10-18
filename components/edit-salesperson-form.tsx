@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/ui/dialog';
+import { API_URL } from '@/lib/api';
 
 interface Salesperson {
   salesperson_id: number;
@@ -57,7 +58,7 @@ export function EditSalespersonForm({ salesperson, isOpen, onClose, onSalesperso
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/salespersons/${salesperson.salesperson_id}`, {
+      const response = await fetch(`${API_URL}/api/salespersons/${salesperson.salesperson_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

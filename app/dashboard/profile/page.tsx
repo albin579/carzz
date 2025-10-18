@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { API_URL } from '@/lib/api';
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState({
@@ -18,7 +19,7 @@ export default function ProfilePage() {
     if (!token) return;
 
     try {
-      const response = await fetch('http://localhost:3001/api/profile', {
+      const response = await fetch(`${API_URL}/api/profile`, {
         headers: { 'x-auth-token': token },
       });
       if (response.ok) {
@@ -40,7 +41,7 @@ export default function ProfilePage() {
     if (!token) return;
 
     try {
-      const response = await fetch('http://localhost:3001/api/profile', {
+      const response = await fetch(`${API_URL}/api/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

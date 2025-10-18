@@ -16,7 +16,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/input";
+import { API_URL } from '@/lib/api';
 
 interface Sale {
   sale_id: number;
@@ -61,7 +62,7 @@ export function EditSaleForm({ sale, isOpen, onClose, onSaleUpdated }: EditSaleF
 
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://localhost:3001/api/sales/${sale.sale_id}`, {
+      const response = await fetch(`${API_URL}/api/sales/${sale.sale_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
