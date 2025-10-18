@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const setupDatabase = require('./setup-db');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -25,6 +26,7 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not Found' });
 });
 
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`Server is running on port ${port}`);
+  await setupDatabase();
 });
