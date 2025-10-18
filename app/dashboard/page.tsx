@@ -22,7 +22,7 @@ export default function DashboardPage() {
         const [statsRes, salesRes] = await Promise.all([
           fetch(`${API_URL}/api/dashboard-stats`, { headers: { 'x-auth-token': token } }),
           fetch(`${API_URL}/api/sales`, { headers: { 'x-auth-token': token } }),
-        });
+        ]);
 
         if (statsRes.ok) {
           const statsData = await statsRes.json();
@@ -31,7 +31,7 @@ export default function DashboardPage() {
 
         if (salesRes.ok) {
           const salesData = await salesRes.json();
-          setRecentSales(salesData.slice(0, 3)); // Get latest 3 sales
+          setRecentSales(salesData.slice(0, 3));
         }
       } catch (error) {
         console.error('Failed to fetch dashboard data', error);
@@ -48,7 +48,6 @@ export default function DashboardPage() {
         <p className="text-neutral-600">Welcome to your car management system</p>
       </header>
 
-      {/* Stats Grid */}
       <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm">
           <div className="mb-4 flex items-center justify-between">
@@ -83,7 +82,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Recent Activity */}
       <div className="rounded-lg border border-neutral-200 bg-white p-6 shadow-sm">
         <h2 className="mb-4 text-xl font-semibold text-neutral-900">Recent Sales</h2>
         <div className="flex flex-col gap-4">
